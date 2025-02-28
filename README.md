@@ -5,3 +5,9 @@ Calendar chatbot/assistant that communicates via Telegram and creates, keeps tra
 ## todo
 - Add telegram interface
 - Add db for events
+- Implement event creation functionality
+- Develop event tracking system
+- Set up reminder notifications
+- Integrate user authentication
+- Design user-friendly interface
+- Test and debug the application
