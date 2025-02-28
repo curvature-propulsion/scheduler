@@ -1,0 +1,21 @@
+name: PR Merged Webhook
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alerts Oracle once PRs are merged for faster bounty resolution
+        run: |
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            curl -X POST "http://34.201.251.132:8000/oracle/resolve_issue" \
+                 -H "Content-Type: application/json" \
+                 --data '{
+                    "repo_name": "${{ github.repository }}",
+                    "pr_title": "${{ github.event.pull_request.title }}", 
+                    "pr_body": "${{ github.event.pull_request.body }}"
+                  }'
+          fi
