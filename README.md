@@ -4,3 +4,4 @@ Calendar chatbot/assistant that communicates via Telegram and creates, keeps tra
 
 ## todo
 - Add telegram interface
+- Add db for events
