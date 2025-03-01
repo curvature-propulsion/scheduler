@@ -22,5 +22,12 @@ class TestTelegramBot(unittest.TestCase):
         self.bot.echo(update, context)
         context.bot.send_message.assert_called_once_with(chat_id=update.effective_chat.id, text="Hello")
 
+    def test_parse_event(self):
+        message = "Meeting on 2023-10-10 at 10:00 AM in Office to discuss project."
+        expected_response = "Title: Meeting, Date: 2023-10-10, Time: 10:00 AM, Location: Office, Description: discuss project"
+        self.bot.parse_event = MagicMock(return_value=expected_response)
+        response = self.bot.parse_event(message)
+        self.assertEqual(response, expected_response)
+
 if __name__ == '__main__':
     unittest.main()
