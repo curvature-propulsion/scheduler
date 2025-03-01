@@ -29,5 +29,9 @@ class TestTelegramBot(unittest.TestCase):
         response = self.bot.parse_event(message)
         self.assertEqual(response, expected_response)
 
+def test_send_reminder(self):
+    self.bot.application.bot.send_message = MagicMock()
+    self.bot.send_reminder()
+    self.bot.application.bot.send_message.assert_called_once_with(chat_id='YOUR_CHAT_ID', text="This is your daily reminder!")
 if __name__ == '__main__':
     unittest.main()

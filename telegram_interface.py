@@ -2,6 +2,9 @@ import telegram
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 import openai
 
+import schedule
+import time
+from datetime import datetime
 
 class TelegramBot:
     def __init__(self, token):
@@ -26,8 +29,18 @@ def parse_event(self, message):
             prompt=f"Extract event details from the following message: {message}",
             max_tokens=150
         )
-        return response.choices[0].text.strip()
-        self.updater.start_polling()
+def send_reminder(self):
+    # This function sends a reminder message
+    chat_id = 'YOUR_CHAT_ID'  # Replace with your chat ID
+    self.application.bot.send_message(chat_id=chat_id, text="This is your daily reminder!")
+
+schedule.every().day.at("12:00").do(self.send_reminder)
+
+while True:
+    schedule.run_pending()
+    time.sleep(60)  # wait one minute
+    return response.choices[0].text.strip()
+    self.updater.start_polling()
         self.updater.idle()
 
 if __name__ == '__main__':
