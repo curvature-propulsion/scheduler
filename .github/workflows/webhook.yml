@@ -1,4 +1,4 @@
-name: PR Merged Webhook
+name: Oracle Issue Close Webhook
 
 on:
   pull_request:
